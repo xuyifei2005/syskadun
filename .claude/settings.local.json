@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls *.ps1)",
+      "Bash(opencode version:*)",
+      "Bash(netstat -ano)",
+      "Bash(findstr :4096)",
+      "Bash(where opencode:*)",
+      "Bash(npm list:*)",
+      "Bash(opencode:*)",
+      "Bash(curl -s http://127.0.0.1:4096/)",
+      "Bash(curl:*)"
+    ]
+  }
+}

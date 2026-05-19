@@ -1,0 +1,40 @@
+# WSL2 配置文件
+# 针对 Intel Core Ultra 9 275HX + 64GB 内存优化
+# 路径：C:\Users\你的用户名\.wslconfig
+
+[wsl2]
+# 内存限制（64GB 系统，分配 32GB 给 WSL2）
+memory=32GB
+
+# 处理器核心数（24 核心，分配 16 核给 WSL2）
+processors=16
+
+# 交换空间（根据开发需求调整）
+swap=8GB
+
+# 启用嵌套虚拟化
+nestedVirtualization=true
+
+# 磁盘压缩（节省空间）
+sparseVhd=true
+
+# 系统代理（如需要）
+# proxy=http://localhost:7890
+
+# 调试设置（可选）
+# debugConsole=true
+
+# 防火墙配置（可选）
+# firewall=true
+
+# 自动挂载 Windows 驱动器
+automountOptions=metadata
+
+# 默认用户名（可选）
+# default=your-username
+
+# 网络模式（可选，使用镜像网络）
+# networkingMode=mirrored
+
+# DNS 配置（可选）
+# dnsTunneling=true
