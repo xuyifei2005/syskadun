@@ -6,9 +6,9 @@
 $host.UI.RawUI.WindowTitle = "Restoring Windows Update..."
 
 Write-Host ""
-Write-Host "╔════════════════════════════════════════╗" -ForegroundColor Cyan
-Write-Host "║   Windows Update - Full Restore        ║" -ForegroundColor Cyan
-Write-Host "╚════════════════════════════════════════╝" -ForegroundColor Cyan
+Write-Host "=========================================" -ForegroundColor Cyan
+Write-Host "   Windows Update - Full Restore" -ForegroundColor Cyan
+Write-Host "=========================================" -ForegroundColor Cyan
 Write-Host ""
 
 # ===========================================
@@ -28,13 +28,13 @@ foreach ($svc in $serviceDefaults.Keys) {
     $startType = $serviceDefaults[$svc]
     
     # Use reg.exe for reliability
-    $result = cmd /c "reg.exe add `"HKLM\SYSTEM\CurrentControlSet\Services\$svc`" /v Start /t REG_DWORD /d $startType /f 2>&1"
+    cmd /c "reg.exe add HKLM\SYSTEM\CurrentControlSet\Services\$svc /v Start /t REG_DWORD /d $startType /f"
     if ($LASTEXITCODE -eq 0) {
         Write-Host "    $svc : Start=$startType (Restored)" -ForegroundColor Green
         
         # Also try sc.exe for consistency
         $scStart = switch ($startType) { "2" { "auto" } "3" { "demand" } default { "demand" } }
-        cmd /c "sc.exe config $svc start= $scStart 2>&1" | Out-Null
+        cmd /c "sc.exe config $svc start= $scStart" | Out-Null
     } else {
         Write-Host "    $svc : FAILED to restore" -ForegroundColor Red
     }
@@ -56,7 +56,7 @@ $policiesToRemove = @(
 )
 
 foreach ($policy in $policiesToRemove) {
-    $result = cmd /c "reg.exe delete `"$($policy.Path)`" /v $($policy.Name) /f 2>&1"
+    cmd /c "reg.exe delete $($policy.Path) /v $($policy.Name) /f"
     if ($LASTEXITCODE -eq 0) {
         Write-Host "    Removed: $($policy.Name)" -ForegroundColor Green
     } else {
@@ -65,7 +65,7 @@ foreach ($policy in $policiesToRemove) {
 }
 
 # Remove pause
-$result = cmd /c "reg.exe delete `"HKLM\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings`" /v PauseUpdatesExpiryTime /f 2>&1"
+cmd /c "reg.exe delete HKLM\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings /v PauseUpdatesExpiryTime /f"
 if ($LASTEXITCODE -eq 0) {
     Write-Host "    Removed: PauseUpdatesExpiryTime (updates unpaused)" -ForegroundColor Green
 } else {
@@ -91,7 +91,7 @@ $tasks = @(
 )
 
 foreach ($task in $tasks) {
-    $result = cmd /c "schtasks.exe /Change /TN `"$($task.Path)\$($task.Name)`" /Enable 2>&1"
+    cmd /c "schtasks.exe /Change /TN `"$($task.Path)\$($task.Name)`" /Enable"
     if ($LASTEXITCODE -eq 0) {
         Write-Host "    Enabled: $($task.Name)" -ForegroundColor Green
         $tasksEnabled++
@@ -108,13 +108,12 @@ Write-Host ""
 Write-Host "  [4/4] Starting services..." -ForegroundColor Yellow
 
 foreach ($svc in $serviceDefaults.Keys) {
-    $result = cmd /c "net.exe start $svc /y 2>&1"
-    if ($LASTEXITCODE -eq 0) {
+    cmd /c "net.exe start $svc /y"
+    $startExit = $LASTEXITCODE
+    if ($startExit -eq 0) {
         Write-Host "    $svc : Started" -ForegroundColor Green
-    } elseif ($result -match "already been started|already running|started") {
-        Write-Host "    $svc : Already running" -ForegroundColor DarkGray
     } else {
-        Write-Host "    $svc : $result" -ForegroundColor Yellow
+        Write-Host "    $svc : (may need restart to take effect)" -ForegroundColor Yellow
     }
 }
 
@@ -122,9 +121,9 @@ foreach ($svc in $serviceDefaults.Keys) {
 # SUMMARY
 # ===========================================
 Write-Host ""
-Write-Host "╔════════════════════════════════════════╗" -ForegroundColor Green
-Write-Host "║     WINDOWS UPDATE RESTORED            ║" -ForegroundColor Green
-Write-Host "╚════════════════════════════════════════╝" -ForegroundColor Green
+Write-Host "=========================================" -ForegroundColor Green
+Write-Host "     WINDOWS UPDATE RESTORED" -ForegroundColor Green
+Write-Host "=========================================" -ForegroundColor Green
 Write-Host ""
 Write-Host "  Windows Update is now fully restored." -ForegroundColor Cyan
 Write-Host "  Go to Settings -> Windows Update -> Check for updates." -ForegroundColor Cyan

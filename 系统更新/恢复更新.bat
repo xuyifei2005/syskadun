@@ -1,5 +1,6 @@
 @echo off
-title Windows Update - 恢复更新
+chcp 65001 >nul
+title Windows Update - Restore
 color 0E
 
 :: ========================================
@@ -17,7 +18,7 @@ echo   Windows Update - Full Restore
 echo ========================================
 echo.
 
-powershell -ExecutionPolicy Bypass -File "%~dp0恢复更新.ps1"
+powershell -ExecutionPolicy Bypass -File "%~dp0restore_update.ps1"
 
 echo.
 echo ========================================
