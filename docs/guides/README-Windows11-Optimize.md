@@ -25,30 +25,30 @@
 ```powershell
 # 以管理员身份运行 PowerShell
 cd d:\syskadun
-.\create-restorepoint.ps1
+.\scripts\config-fix\create-restorepoint.ps1
 ```
 
 ### 步骤 2：执行一键优化
 
 ```powershell
 # 执行所有优化（推荐）
-.\win11-optimize.ps1
+.\scripts\optimize\win11-optimize.ps1
 
 # 仅执行系统清理
-.\win11-optimize.ps1 -CleanOnly
+.\scripts\optimize\win11-optimize.ps1 -CleanOnly
 
 # 仅执行性能优化
-.\win11-optimize.ps1 -PerformanceOnly
+.\scripts\optimize\win11-optimize.ps1 -PerformanceOnly
 ```
 
 ### 步骤 3：监控性能
 
 ```powershell
 # 启动性能监控
-.\performance-monitor.ps1
+.\scripts\monitor\performance-monitor.ps1
 
 # 导出性能日志
-.\performance-monitor.ps1 -ExportLog
+.\scripts\monitor\performance-monitor.ps1 -ExportLog
 ```
 
 ---
@@ -65,7 +65,7 @@ cd d:\syskadun
 ```powershell
 # 右键点击 PowerShell，选择"以管理员身份运行"
 cd d:\syskadun
-.\create-restorepoint.ps1
+.\scripts\config-fix\create-restorepoint.ps1
 ```
 
 **还原系统方法：**
@@ -75,7 +75,7 @@ cd d:\syskadun
 
 ---
 
-### 2. win11-optimize.ps1 - 系统优化主脚本
+### 2. scripts/optimize/win11-optimize.ps1 - 系统优化主脚本
 
 **功能：**
 - 清理系统垃圾文件
@@ -112,7 +112,7 @@ cd d:\syskadun
 
 ---
 
-### 3. performance-monitor.ps1 - 性能监控
+### 3. scripts/monitor/performance-monitor.ps1 - 性能监控
 
 **功能：**
 - 实时监控 CPU、内存、磁盘使用率
@@ -122,16 +122,16 @@ cd d:\syskadun
 **使用方法：**
 ```powershell
 # 基础监控（每 2 秒刷新）
-.\performance-monitor.ps1
+.\scripts\monitor\performance-monitor.ps1
 
 # 自定义刷新间隔（5 秒）
-.\performance-monitor.ps1 -Interval 5
+.\scripts\monitor\performance-monitor.ps1 -Interval 5
 
 # 运行指定时长（60 秒）
-.\performance-monitor.ps1 -Duration 60
+.\scripts\monitor\performance-monitor.ps1 -Duration 60
 
 # 导出日志到 CSV
-.\performance-monitor.ps1 -ExportLog
+.\scripts\monitor\performance-monitor.ps1 -ExportLog
 ```
 
 **参数说明：**

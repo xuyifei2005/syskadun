@@ -8,33 +8,33 @@
 
 | 文件名 | 类型 | 用途 | 使用频率 |
 |--------|------|------|----------|
-| `quick_config_menu.bat` | 批处理 | **一键启动菜单**（推荐） | 每天 |
-| `monitor_c_drive.ps1` | PowerShell | 监控 C 盘空间 | 每天 |
-| `scheduled_cleanup.ps1` | PowerShell | 定期清理系统 | 每周 |
+| `scripts\tools\quick_config_menu.bat` | 批处理 | **一键启动菜单**（推荐） | 每天 |
+| `scripts\monitor\monitor_c_drive.ps1` | PowerShell | 监控 C 盘空间 | 每天 |
+| `scripts\cleanup\scheduled_cleanup.ps1` | PowerShell | 定期清理系统 | 每周 |
 
 ### 配置文档
 
 | 文件名 | 用途 | 必读性 |
 |--------|------|--------|
-| `PREVENTIVE_OPTIMIZATION_SUMMARY.md` | **总结报告**（先读这个） | ⭐⭐⭐⭐⭐ |
-| `configuration_checklist.md` | 配置检查清单 | ⭐⭐⭐⭐⭐ |
-| `prevent_c_drive_fill_guide.md` | 完整配置指南 | ⭐⭐⭐⭐ |
+| `docs/reports/PREVENTIVE_OPTIMIZATION_SUMMARY.md` | **总结报告**（先读这个） | ⭐⭐⭐⭐⭐ |
+| `docs/guides/configuration_checklist.md` | 配置检查清单 | ⭐⭐⭐⭐⭐ |
+| `docs/guides/prevent_c_drive_fill_guide.md` | 完整配置指南 | ⭐⭐⭐⭐ |
 
 ### 专项指南
 
 | 文件名 | 用途 | 使用场景 |
 |--------|------|----------|
-| `docker_migration_guide.md` | Docker 数据迁移 | 使用 Docker 时 |
-| `pagefile_instructions.ps1` | 虚拟内存配置 | C 盘空间不足时 |
-| `comfyui_migration_guide.md` | ComfyUI 模型迁移 | 使用 ComfyUI 时 |
-| `app_install_location_guide.md` | 应用安装位置配置 | 安装新软件时 |
+| `docs/guides/docker_migration_guide.md` | Docker 数据迁移 | 使用 Docker 时 |
+| `scripts\optimize\pagefile_instructions.ps1` | 虚拟内存配置 | C 盘空间不足时 |
+| `docs/guides/comfyui_migration_guide.md` | ComfyUI 模型迁移 | 使用 ComfyUI 时 |
+| `docs/guides/app_install_location_guide.md` | 应用安装位置配置 | 安装新软件时 |
 
 ### 历史报告
 
 | 文件名 | 说明 |
 |--------|------|
-| `FINAL_OPTIMIZATION_REPORT.md` | 第一阶段优化总结 |
-| `C_DRIVE_CLEANUP_REPORT.md` | C 盘清理报告 |
+| `docs/reports/FINAL_OPTIMIZATION_REPORT.md` | 第一阶段优化总结 |
+| `docs/reports/C_DRIVE_CLEANUP_REPORT.md` | C 盘清理报告 |
 
 ---
 
@@ -57,12 +57,12 @@ cd d:\syskadun
 
 **步骤 2**: 运行监控脚本
 ```powershell
-.\monitor_c_drive.ps1
+.\scripts\monitor\monitor_c_drive.ps1
 ```
 
 **步骤 3**: 阅读总结报告
 ```powershell
-code PREVENTIVE_OPTIMIZATION_SUMMARY.md
+code docs\reports\PREVENTIVE_OPTIMIZATION_SUMMARY.md
 ```
 
 ---
@@ -73,7 +73,7 @@ code PREVENTIVE_OPTIMIZATION_SUMMARY.md
 
 1. **运行监控脚本** - 查看当前 C 盘状态
    ```powershell
-   .\monitor_c_drive.ps1
+   .\scripts\monitor\monitor_c_drive.ps1
    ```
 
 2. **配置 Windows 存储设置**
@@ -82,7 +82,7 @@ code PREVENTIVE_OPTIMIZATION_SUMMARY.md
 
 3. **运行一次清理**
    ```powershell
-   .\scheduled_cleanup.ps1
+   .\scripts\cleanup\scheduled_cleanup.ps1
    ```
 
 ### 第二阶段：本周完成（30 分钟）
@@ -161,9 +161,9 @@ code PREVENTIVE_OPTIMIZATION_SUMMARY.md
 ### Q1: 如何查看 C 盘当前状态？
 **A**: 运行监控脚本
 ```powershell
-.\monitor_c_drive.ps1
+.\scripts\monitor\monitor_c_drive.ps1
 ```
-或双击 `quick_config_menu.bat`，选择选项 [1]
+或双击 `scripts\tools\quick_config_menu.bat`，选择选项 [1]
 
 ### Q2: 清理脚本安全吗？
 **A**: 安全。只清理临时文件、缓存等可安全删除的内容。
@@ -181,9 +181,9 @@ code PREVENTIVE_OPTIMIZATION_SUMMARY.md
 
 ## 📞 获取帮助
 
-1. **查看文档**: 打开 `PREVENTIVE_OPTIMIZATION_SUMMARY.md`
-2. **检查清单**: 打开 `configuration_checklist.md` 逐步执行
-3. **完整指南**: 打开 `prevent_c_drive_fill_guide.md`
+1. **查看文档**: 打开 `docs/reports/PREVENTIVE_OPTIMIZATION_SUMMARY.md`
+2. **检查清单**: 打开 `docs/guides/configuration_checklist.md` 逐步执行
+3. **完整指南**: 打开 `docs/guides/prevent_c_drive_fill_guide.md`
 
 ---
 
