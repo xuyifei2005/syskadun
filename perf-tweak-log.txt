@@ -1,0 +1,44 @@
+﻿=== Safe perf tweaks - 2026-09-17 16:18:31 ===
+Admin: True
+RestorePoint: FAILED - 由于以下错误，无法运行此命令: 由于禁用了该服务或没有启用与该服务关联的设备，无法启动该服务。
+
+
+Hibernate: disabled (exit=0)
+Transparency: disabled
+Win32PrioritySeparation: 26
+注册表状态现在为: 1 (在所有卷上禁用 8dot3 名称创建)。
+
+TRIM query:
+NTFS DisableDeleteNotify = 0  (允许将 TRIM 操作发送到存储设备)
+ReFS DisableDeleteNotify = 0  (允许将 TRIM 操作发送到存储设备)
+
+C free: 111.66 GB
+=== Done ===
+=== Fix restore point - 2026-09-17 16:19:42 ===
+Admin: True
+Service VSS: Manual (no change)
+Service swprv: Manual (no change)
+SystemProtection C: enabled
+RestorePoint: created OK
+
+SequenceNumber Description          CreationTime             
+-------------- -----------          ------------             
+             1 Pre-PerfTweak-Backup 20260917081943.275906-000
+
+
+
+=== Done ===
+=== Finalize optimize - 2026-09-17 16:44:46 ===
+Admin: True
+DiagTrack: disabled
+ContentDelivery tips: disabled
+StorageSense: enabled
+TempClean: freed 0.29 GB; C free now 111.86 GB
+DNS cache: flushed
+DISM StartComponentCleanup: started...
+
+[==========================100.0%==========================] 
+操作成功完成。
+
+C free after DISM: 112.66 GB
+=== Done ===
